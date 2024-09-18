@@ -12,9 +12,9 @@ import time
 path = 'gh-pages' if len(sys.argv) == 1 else sys.argv[1]
 indexName = 'index.html'
 template = """<html>
-<head><title>GDAL+Numpy Python packages</title></head>
+<head><title>GDAL/Numpy Python packages</title></head>
 <body>
-<h1>GDAL+Numpy Python packages</h1>
+<h1>GDAL/Numpy manylinux Python packages</h1>
 <pre>
 %LINKS%
 </pre>
