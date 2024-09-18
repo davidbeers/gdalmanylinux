@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from distutils.dist import Distribution
 
 # Setup script for GDAL Python bindings.
 # Inspired by psycopg2 setup.py file
@@ -7,7 +8,7 @@
 # Howard Butler hobu.inc@gmail.com
 
 
-gdal_version = '2.4.4'
+gdal_version = '3.5.3'
 
 import sys
 import shutil
@@ -158,6 +159,13 @@ class gdal_ext(build_ext):
         "The name of the gdal-config binary and/or a full path to it"),
     ])
 
+    def __init__(self, dist: Distribution):
+        super().__init__(dist)
+        self.numpy_include_dir = None
+        self.gdaldir = None
+        self.gdal_config = self.GDAL_CONFIG
+        self.already_raised_no_config_error = False
+
     def initialize_options(self):
         build_ext.initialize_options(self)
 
@@ -275,10 +283,10 @@ readme = str(open('README.rst','rb').read())
 
 name = 'GDAL'
 version = gdal_version
-author = "Frank Warmerdam"
-author_email = "warmerdam@pobox.com"
-maintainer = "Howard Butler"
-maintainer_email = "hobu.inc@gmail.com"
+author = "David Beers and Frank Warmerdam"
+author_email = "david.beers@solarplane.io, warmerdam@pobox.com"
+maintainer = "David Beers"
+maintainer_email = "david.beers@solarplane.io"
 description = "GDAL: Geospatial Data Abstraction Library"
 license = "MIT"
 url="http://www.gdal.org"
